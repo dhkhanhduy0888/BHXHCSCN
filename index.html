@@ -248,7 +248,7 @@ HTML
 
     // Tự động tải file Excel ngay khi mở trang web từ cùng thư mục
     window.addEventListener('DOMContentLoaded', function() {
-        let tenFileExcel = 'T07_BHXH, BHTN_2026.xlsx'; // Tên file Excel đặt chung trên GitHub
+        let tenFileExcel = 'T07_BHXH, BHTN_2026.xlsx';
         
         fetch(tenFileExcel)
             .then(response => {
@@ -270,7 +270,6 @@ HTML
                 document.getElementById('trangThaiLoad').innerHTML = '✅ Đã đồng bộ dữ liệu trực tuyến';
                 document.getElementById('trangThaiLoad').className = 'badge bg-success text-white px-3 py-2 fw-bold rounded-pill shadow-sm';
 
-                // Tự động phân tích sheet đầu tiên
                 taiVaPhanTichDuLieu(workbookData.SheetNames[0]);
             })
             .catch(error => {
@@ -332,7 +331,7 @@ HTML
                     no_lai: Number(row[36]) || 0,       // Cột AK
                     nsnn: Number(row[37]) || 0,         // Cột AL
                     so_cham_dong: Number(row[38]) || 0, // Cột AM
-                    tyle_kh: Number(row[39]) ? (Number(row[39]) * 100).toFixed(2) : "0.00", // Cột AN
+                    tyle_kh: Number(row[39]) ? Number(row[39]).toFixed(2) : "0.00", // Cột AN (Hiển thị nguyên bản dạng 0.34)
                     so_kh: Number(row[40]) ? Number(row[40]).toFixed(2) : "0.00",         // Cột AO
                     cong_tru_kh: Number(row[41]) ? Number(row[41]).toFixed(2) : "0.00"   // Cột AP
                 };
@@ -442,7 +441,7 @@ HTML
                 <td class="text-end">${n.no_lai.toLocaleString()}</td>
                 <td class="text-end">${n.nsnn.toLocaleString()}</td>
                 <td class="text-end">${n.so_cham_dong.toLocaleString()}</td>
-                <td class="text-center fw-bold"><span class="badge bg-danger">${n.tyle_kh}%</span></td>
+                <td class="text-center fw-bold"><span class="badge bg-danger">${n.tyle_kh}</span></td>
                 <td class="text-end">${n.so_kh}</td>
                 <td class="text-end">${n.cong_tru_kh}</td>
             </tr>
